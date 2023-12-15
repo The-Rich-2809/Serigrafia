@@ -16,7 +16,7 @@ namespace Serigrafia.Clases
             SqlConnectionStringBuilder CadenaConexion = new SqlConnectionStringBuilder();
             CadenaConexion.DataSource = @"(localdb)\MSSQLLocalDB";
             CadenaConexion.IntegratedSecurity = true;
-            CadenaConexion.InitialCatalog = "Proyectoaula";
+            CadenaConexion.InitialCatalog = "Serigrafia";
             conexion = new SqlConnection(CadenaConexion.ConnectionString);
             return conexion;
         }

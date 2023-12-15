@@ -8,10 +8,6 @@ go
     DROP TABLE Rol;
 GO
 
-IF OBJECT_ID('Permiso') IS NOT NULL
-    DROP TABLE Permiso;
-GO
-
 IF OBJECT_ID('Cliente') IS NOT NULL
     DROP TABLE Cliente;
 GO
@@ -38,68 +34,51 @@ GO
 
 -- Creaci�n de la tabla Rol para dar roles a los usuarios
 CREATE TABLE Rol(
-    ID_Rol INT PRIMARY KEY identity,
+    ID_Rol INT PRIMARY KEY identity(1,1),
     Descripcion varchar(50),
 	FechaRegistro datetime default getdate() /* se va a generar la fecha actual en el sistema*/
 )
 go
 
--- Creaci�n de la tabla Permisos para poder dar una mejor administracion al due�o
-CREATE TABLE Permiso (
-Id_Permiso int primary key identity,
-Id_Rol int references Rol(Id_Rol),
-NombreMenu varchar(20),
-FechaRegistro datetime default getdate()
-);
-go
-
 -- Creaci�n de la tabla Cliente
 CREATE TABLE Cliente(
-Id_Cliente int primary key identity,
+Id_Cliente int primary key identity(1,1),
 Nombre varchar(50),
 Dirrecion varchar(50),
 Telefono varchar(10),
-Estado bit,
-FechaRegistro datetime default getdate()
 );
 go
 
 create table Usuario(
-Id_Usuario int primary key identity,
+Id_Usuario int primary key identity (1,1),
 Usuario varchar(50),
 Nombre varchar (50),
 Correo varchar(50),
 Contrasena varchar(50),
 Id_Rol int references Rol(Id_Rol),
-Estado bit,
-FechaRegistro datetime default getdate()
 );
 go
 
 create table Catalogo(
-Id_Catalogo int primary key identity,
+Id_Catalogo int primary key identity(1,1),
 Descripcion varchar(100),
-Estado Bit,
-FechaRegistro datetime default getdate()
 );
 go
 
 create table Producto(
-Id_Producto int primary key identity,
+Id_Producto int primary key identity(1,1),
 Codigo varchar(50),
 Nombre varchar(50),
 Descripcion varchar(100),
 Id_Catalogo int references Catalogo(Id_Catalogo),
 Stock int not null default 0,
 Precio_Compra decimal(10,2) default 0,
-Precio_Venta decimal(10,2) default 0,
-Estado Bit,
-FechaRegistro datetime default getdate()
+Precio_Venta decimal(10,2) default 0
 );
 go
 
 create table Venta(
-Id_Venta int primary key identity,
+Id_Venta int primary key identity(1,1),
 Id_Usuario int references Usuario(Id_Usuario),/* quien creo la venta */
 Tipo_Documento varchar(50),
 NombreDocumento varchar (50),
@@ -114,7 +93,7 @@ FechaRegistro datetime default getdate()
 go
 
 create table Detalle_Venta(
-Id_DetalleVenta int primary key identity,
+Id_DetalleVenta int primary key identity(1,1),
 Id_Venta int references Venta(Id_Venta),/* quien creo la venta */
 Id_Producto int references Producto(Id_Producto),
 Precio_Venta decimal(10,2),
@@ -125,43 +104,18 @@ FechaRegistro datetime default getdate()
 go
 
 -- Cambiar la autorizaci�n de la base de datos
-ALTER AUTHORIZATION ON DATABASE::ProyectoAula TO SA;
+ALTER AUTHORIZATION ON DATABASE::Serigrafia TO SA;
 go
 
 INSERT INTO Rol(Descripcion) values
 ('Administrador'),
-('Supervisor'),
 ('Empleado')
 go
 
 INSERT INTO Usuario(Usuario,Nombre,Correo,Contrasena,Id_Rol) VALUES
 ('evelinakko','Evelyn Sarabi Lopez Montero','evelynsarabi@hotmial.com','capuchino',1),
 ('aaron','Morales Diaz Santiago Aaron','aaron@gmail.com','1234',2),
-('David','Rodriguez Cruz David Emiliano','Davidcruz@hotmail.com','123456',3)
-go
-
-INSERT INTO Permiso(Id_Rol,NombreMenu) VALUES
-(1,'menuusuarios'),
-(1,'menuproductos'),
-(1,'menuventas'),
-(1,'menuclientes'),
-(1,'menureportes'),
-(1,'menuacercade')
-go
-
-INSERT INTO Permiso(Id_Rol,NombreMenu) VALUES
-(2,'menuproductos'),
-(2,'menuventas'),
-(2,'menuclientes'),
-(2,'menureportes'),
-(2,'menuacercade')
-go
-
-INSERT INTO Permiso(Id_Rol,NombreMenu) VALUES
-(3,'menuventas'),
-(3,'menuclientes'),
-(3,'menureportes'),
-(3,'menuacercade')
+('David','Rodriguez Cruz David Emiliano','Davidcruz@hotmail.com','123456',2)
 go
 
 INSERT INTO Cliente(Nombre,Dirrecion,Telefono) VALUES
@@ -187,10 +141,4 @@ INSERT INTO Catalogo(Descripcion) VALUES
 ('Plumas'),
 ('Gorras'),
 ('Tasas');
-go
-
-SELECT r.ID_Rol, NombreMenu from Permiso p
-INNER JOIN Rol r on r.ID_Rol = p.Id_Rol
-inner join Usuario u on u.Id_Rol = r.ID_Rol
-where u.Id_Usuario = 1
 go
