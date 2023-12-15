@@ -55,12 +55,10 @@ go
 
 -- Creaci�n de la tabla Cliente
 CREATE TABLE Cliente(
-Id_Cliente int primary key identity,
+Id_Cliente int primary key identity (1,1),
 Nombre varchar(50),
 Dirrecion varchar(50),
 Telefono varchar(10),
-Estado bit,
-FechaRegistro datetime default getdate()
 );
 go
 
@@ -125,7 +123,7 @@ FechaRegistro datetime default getdate()
 go
 
 -- Cambiar la autorizaci�n de la base de datos
-ALTER AUTHORIZATION ON DATABASE::ProyectoAula TO SA;
+ALTER AUTHORIZATION ON DATABASE::Serigrafia TO SA;
 go
 
 INSERT INTO Rol(Descripcion) values
