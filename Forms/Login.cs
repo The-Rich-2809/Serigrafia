@@ -1,5 +1,4 @@
-﻿using Serigrafia.Clases;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,32 +17,9 @@ namespace Serigrafia.Forms
             InitializeComponent();
         }
 
-        private void BtnIngresar_Click(object sender, EventArgs e)
+        private void Login_Load(object sender, EventArgs e)
         {
-            if (TxtUsuario.Text == "" && TxtContraseña.Text == "")
-            {
-                MessageBox.Show("Campos vacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                if (InicioSesion.IniciaSesion(TxtUsuario.Text, TxtContraseña.Text))
-                {
-                    TxtContraseña.Text = "";
-                    TxtUsuario.Text = "";
-                    //this.Hide();
 
-                    if (InicioSesion.nivel == 1)
-                    {
-                        MessageBox.Show("Entro al sistema", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    if (InicioSesion.nivel == 2)
-                    {
-                        MessageBox.Show("Entro al sistema", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                }
-
-                //this.Show();
-            }
         }
     }
 }

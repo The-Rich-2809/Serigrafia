@@ -46,38 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\Conexion.cs" />
-    <Compile Include="Clases\InicioSesion.cs" />
-    <Compile Include="Clases\Usario.cs" />
-    <Compile Include="Forms\Clientes.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\Clientes.Designer.cs">
-      <DependentUpon>Clientes.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Clases\Producto.cs" />
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Usuarios.cs">
+    <Compile Include="Forms\Productos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Usuarios.Designer.cs">
-      <DependentUpon>Usuarios.cs</DependentUpon>
+    <Compile Include="Forms\Productos.Designer.cs">
+      <DependentUpon>Productos.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\Clientes.resx">
-      <DependentUpon>Clientes.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Usuarios.resx">
-      <DependentUpon>Usuarios.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Productos.resx">
+      <DependentUpon>Productos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
