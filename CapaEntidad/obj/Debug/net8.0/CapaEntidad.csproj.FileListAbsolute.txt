@@ -1,0 +1,11 @@
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\bin\Debug\net8.0\CapaEntidad.deps.json
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\bin\Debug\net8.0\CapaEntidad.dll
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\bin\Debug\net8.0\CapaEntidad.pdb
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\obj\Debug\net8.0\CapaEntidad.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\obj\Debug\net8.0\CapaEntidad.AssemblyInfoInputs.cache
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\obj\Debug\net8.0\CapaEntidad.AssemblyInfo.cs
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\obj\Debug\net8.0\CapaEntidad.csproj.CoreCompileInputs.cache
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\obj\Debug\net8.0\CapaEntidad.dll
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\obj\Debug\net8.0\refint\CapaEntidad.dll
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\obj\Debug\net8.0\CapaEntidad.pdb
+C:\Users\Eevee\source\repos\Proyectoaula\CapaEntidad\obj\Debug\net8.0\ref\CapaEntidad.dll
