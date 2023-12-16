@@ -23,7 +23,7 @@ namespace Serigrafia.Forms
         private void Clientes_Load(object sender, EventArgs e)
         {
             MostrarEmpleados();
-            Mostrar(1, false, Color.Gray);
+            Mostrar(1, false, Color.DarkGoldenrod);
             Boton = 0;
         }
 
@@ -61,13 +61,13 @@ namespace Serigrafia.Forms
             }
 
             MostrarEmpleados();
-            Mostrar(1, false, Color.Gray);
+            Mostrar(1, false, Color.DarkGoldenrod);
         }
 
         private void Btn_Cancelar_Click(object sender, EventArgs e)
         {
             MostrarEmpleados();
-            Mostrar(1, false, Color.Gray);
+            Mostrar(1, false, Color.DarkGoldenrod);
             Boton = 0;
         }
 
@@ -79,7 +79,7 @@ namespace Serigrafia.Forms
                 clientes.Direccion = Txt_Direccion.Text;
                 clientes.Telefono = Txt_Telefono.Text;
 
-                Mostrar(1, false, Color.Gray);
+                Mostrar(1, false, Color.DarkGoldenrod);
 
                 switch (Boton)
                 {
@@ -129,8 +129,8 @@ namespace Serigrafia.Forms
                 case 1:
                     Btn_Guardar.Enabled = false;
                     Btn_Cancelar.Enabled = false;
-                    Btn_Cancelar.BackColor = Color.Gray;
-                    Btn_Guardar.BackColor = Color.Gray;
+                    Btn_Cancelar.BackColor = Color.DarkGoldenrod;
+                    Btn_Guardar.BackColor = Color.DarkGoldenrod;
 
                     break;
                 case 2:
