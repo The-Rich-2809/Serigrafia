@@ -80,15 +80,8 @@ go
 create table Venta(
 Id_Venta int primary key identity(1,1),
 Id_Usuario int references Usuario(Id_Usuario),/* quien creo la venta */
-Tipo_Documento varchar(50),
-NombreDocumento varchar (50),
-NumeroDocumento varchar (50),
-DocumentoCliente varchar (50),
 NombreCliente varchar (50),
-MontoTotal decimal(10,2),
-MontoPago decimal(10,2),
-MontoCambio decimal(10,2),
-FechaRegistro datetime default getdate()
+MontoTotal decimal(10,2)
 );
 go
 
@@ -142,3 +135,23 @@ INSERT INTO Catalogo(Descripcion) VALUES
 ('Gorras'),
 ('Tasas');
 go
+
+-- Insertar 15 registros en la tabla Producto con Id_Catalogo de 1 a 4
+INSERT INTO Producto (Codigo, Nombre, Descripcion, Id_Catalogo, Stock, Precio_Compra, Precio_Venta)
+VALUES
+  ('COD001', 'Producto 1', 'Descripción del producto 1', 1, 50, 10.99, 19.99),
+  ('COD002', 'Producto 2', 'Descripción del producto 2', 2, 30, 8.50, 15.75),
+  ('COD003', 'Producto 3', 'Descripción del producto 3', 3, 20, 12.75, 22.50),
+  ('COD004', 'Producto 4', 'Descripción del producto 4', 4, 40, 15.25, 28.99),
+  ('COD005', 'Producto 5', 'Descripción del producto 5', 1, 60, 9.99, 17.50),
+  ('COD006', 'Producto 6', 'Descripción del producto 6', 2, 15, 18.50, 34.75),
+  ('COD007', 'Producto 7', 'Descripción del producto 7', 3, 25, 14.99, 25.00),
+  ('COD008', 'Producto 8', 'Descripción del producto 8', 4, 10, 21.75, 39.99),
+  ('COD009', 'Producto 9', 'Descripción del producto 9', 1, 35, 11.50, 20.25),
+  ('COD010', 'Producto 10', 'Descripción del producto 10', 2, 18, 13.25, 24.50),
+  ('COD011', 'Producto 11', 'Descripción del producto 11', 3, 22, 16.99, 31.75),
+  ('COD012', 'Producto 12', 'Descripción del producto 12', 4, 28, 20.50, 37.25),
+  ('COD013', 'Producto 13', 'Descripción del producto 13', 1, 45, 14.75, 26.99),
+  ('COD014', 'Producto 14', 'Descripción del producto 14', 2, 12, 22.99, 41.50),
+  ('COD015', 'Producto 15', 'Descripción del producto 15', 3, 50, 19.50, 35.99);
+Go

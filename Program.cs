@@ -17,7 +17,7 @@ namespace Serigrafia
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HomeEmpleado());
+            Application.Run(new Login());
         }
     }
 }
