@@ -60,5 +60,20 @@ namespace Serigrafia.Forms
         {
             inicio();
         }
+
+        private void MenuVenta_Click(object sender, EventArgs e)
+        {
+            AbrirHijo(new Ventas());
+        }
+
+        private void MenuVentasRealizadas_Click(object sender, EventArgs e)
+        {
+            AbrirHijo(new VentasRealizadas());
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

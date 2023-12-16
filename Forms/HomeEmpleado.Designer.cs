@@ -63,6 +63,7 @@
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
             this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(137, 60);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Aplicacion";
+            this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -104,7 +105,7 @@
             this.menuventas.Image = global::Serigrafia.Properties.Resources.carrito_de_compras;
             this.menuventas.Margin = new System.Windows.Forms.Padding(0, 0, 900, 0);
             this.menuventas.Name = "menuventas";
-            this.menuventas.Size = new System.Drawing.Size(80, 26);
+            this.menuventas.Size = new System.Drawing.Size(80, 24);
             this.menuventas.Text = "Venta";
             // 
             // MenuVenta
@@ -112,12 +113,14 @@
             this.MenuVenta.Name = "MenuVenta";
             this.MenuVenta.Size = new System.Drawing.Size(224, 26);
             this.MenuVenta.Text = "Registrar Ventas";
+            this.MenuVenta.Click += new System.EventHandler(this.MenuVenta_Click);
             // 
             // MenuVentasRealizadas
             // 
             this.MenuVentasRealizadas.Name = "MenuVentasRealizadas";
             this.MenuVentasRealizadas.Size = new System.Drawing.Size(224, 26);
             this.MenuVentasRealizadas.Text = "Ventas Realizadas";
+            this.MenuVentasRealizadas.Click += new System.EventHandler(this.MenuVentasRealizadas_Click);
             // 
             // BtnHome
             // 

@@ -27,7 +27,7 @@ namespace Serigrafia.Clases
                 SqlCommand CmdSQL;
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
 
-                Cadena = @"Select * from Cliente";
+                Cadena = @"Select * from Producto";
 
                 CmdSQL = new SqlCommand(Cadena, Conectar);
 

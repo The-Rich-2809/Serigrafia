@@ -13,6 +13,7 @@ namespace Serigrafia.Clases
     internal class InicioSesion
     {
         public static int nivel { get; set; }
+        public static int usuario { get; set; }
 
         public static bool IniciaSesion(string Usuario, string Contaseña)
         {
@@ -41,6 +42,7 @@ namespace Serigrafia.Clases
                     if (UsuariosDT.Rows.Count > 0)
                     {
                         nivel = Convert.ToInt32(UsuariosDT.Rows[0]["Id_Rol"]);
+                        usuario = Convert.ToInt32(UsuariosDT.Rows[0]["Id_Usuario"]);
 
                         return true;
                     }
