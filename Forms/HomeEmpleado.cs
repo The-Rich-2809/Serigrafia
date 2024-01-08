@@ -12,7 +12,7 @@ namespace Serigrafia.Forms
 {
     public partial class HomeEmpleado : Form
     {
-        private Form Hijo = null;
+        public Form Hijo = null;
         public HomeEmpleado()
         {
             InitializeComponent();
@@ -28,7 +28,7 @@ namespace Serigrafia.Forms
 
         }
 
-        private void AbrirHijo(Form Hijito)
+        public void AbrirHijo(Form Hijito)
         {
             if (Hijo != null)
                 Hijo.Close();
@@ -61,7 +61,7 @@ namespace Serigrafia.Forms
             inicio();
         }
 
-        private void MenuVenta_Click(object sender, EventArgs e)
+        public void MenuVenta_Click(object sender, EventArgs e)
         {
             AbrirHijo(new Ventas());
         }

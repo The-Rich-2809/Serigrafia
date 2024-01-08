@@ -15,10 +15,12 @@ namespace Serigrafia.Forms
 {
     public partial class Ventas : Form
     {
+        public HomeEmpleado Home = new HomeEmpleado();
         static DataTable Venta = new DataTable();
         public Ventas()
         {
             InitializeComponent();
+            this.Dgv_ProductosSeleccionados.ColumnCount = 8;
             label3.Text = InicioSesion.usuario.ToString();
         }
 
@@ -93,16 +95,22 @@ namespace Serigrafia.Forms
 
         private void Btn_Terminar_Click(object sender, EventArgs e)
         {
-            int RenglonSeleccionado = Dgv_Ventas.CurrentRow.Index;
-            string h = Dgv_Ventas.Rows[RenglonSeleccionado].Cells[7].Value.ToString();
-            label4.Text = h;
+            double Total = 0;
+            //int RenglonSeleccionado = Dgv_Ventas.CurrentRow.Index;
+            //string h = Dgv_Ventas.Rows[RenglonSeleccionado].Cells[7].Value.ToString();
+            
             DialogResult Resultado = MessageBox.Show("¿Desea terminar la venta?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (Resultado == DialogResult.Yes)
             {
+                for (int i = 0; i < Dgv_ProductosSeleccionados.Rows.Count; i++)
+                {
+                    Total += Convert.ToDouble(Dgv_ProductosSeleccionados.Rows[0].Cells[7].Value.ToString());
+                }
+                label4.Text = Convert.ToString(Total);
                 Insertar();
+                Home.MenuVenta_Click(this, EventArgs.Empty);
                 MessageBox.Show("Se realizo la venta adecuadamente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-                
+            }       
         }
         public bool Insertar()
         {
@@ -139,6 +147,36 @@ namespace Serigrafia.Forms
                 }
             }
             return Exito;
+        }
+
+        private void Btn_Agregar_Click(object sender, EventArgs e)
+        {
+            string[] producto = new string[8];
+            int RenglonSeleccionado = Dgv_Ventas.CurrentRow.Index;
+            for(int i = 0; i < 8; i++ )
+            {
+                producto[i] = Dgv_Ventas.Rows[RenglonSeleccionado].Cells[i].Value.ToString();
+            }
+            producto[5] = numericUpDown1.Value.ToString();
+            object[] array = producto;
+            Dgv_ProductosSeleccionados.Rows.Add(array);
+            numericUpDown1.Value = 1;
+        }
+
+        private void Btn_Eliminar_Click(object sender, EventArgs e)
+        {
+            int RenglonSeleccionado = Dgv_Ventas.CurrentRow.Index;
+            DialogResult Resultado = MessageBox.Show("¿Desea eliminar el producto?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (Resultado == DialogResult.Yes)
+            {
+                if (RenglonSeleccionado >= 0)
+                {
+                    Dgv_ProductosSeleccionados.Rows.RemoveAt(RenglonSeleccionado);
+                    MessageBox.Show("Se elimino el producto adecuadamente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+               
+
         }
     }
 }
