@@ -67,5 +67,15 @@ namespace Serigrafia.Forms
         {
             AbrirHijo(new Clientes());
         }
+
+        private void menuproductos_Click(object sender, EventArgs e)
+        {
+            AbrirHijo(new Productos());
+        }
+
+        private void MenuVentasRealizadas_Click(object sender, EventArgs e)
+        {
+            AbrirHijo(new VentasRealizadas());
+        }
     }
 }

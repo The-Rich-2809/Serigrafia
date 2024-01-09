@@ -33,14 +33,13 @@
             this.cerrarSesionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.Menuu = new System.Windows.Forms.MenuStrip();
-            this.PnlForm = new System.Windows.Forms.Panel();
             this.menuusuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.menuproductos = new System.Windows.Forms.ToolStripMenuItem();
             this.menuventas = new System.Windows.Forms.ToolStripMenuItem();
-            this.MenuVenta = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuVentasRealizadas = new System.Windows.Forms.ToolStripMenuItem();
             this.menuclientes = new System.Windows.Forms.ToolStripMenuItem();
             this.BtnHome = new System.Windows.Forms.ToolStripMenuItem();
+            this.PnlForm = new System.Windows.Forms.Panel();
             this.MenuTitulo.SuspendLayout();
             this.Menuu.SuspendLayout();
             this.SuspendLayout();
@@ -54,16 +53,16 @@
             this.cerrarSesionToolStripMenuItem});
             this.MenuTitulo.Location = new System.Drawing.Point(0, 0);
             this.MenuTitulo.Name = "MenuTitulo";
-            this.MenuTitulo.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.MenuTitulo.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.MenuTitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.MenuTitulo.Size = new System.Drawing.Size(1105, 52);
+            this.MenuTitulo.Size = new System.Drawing.Size(1473, 64);
             this.MenuTitulo.TabIndex = 2;
             this.MenuTitulo.Text = "menuStrip2";
             // 
             // cerrarSesionToolStripMenuItem
             // 
             this.cerrarSesionToolStripMenuItem.Name = "cerrarSesionToolStripMenuItem";
-            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(110, 48);
+            this.cerrarSesionToolStripMenuItem.Size = new System.Drawing.Size(137, 60);
             this.cerrarSesionToolStripMenuItem.Text = "Cerrar Aplicacion";
             this.cerrarSesionToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesionToolStripMenuItem_Click);
             // 
@@ -72,10 +71,9 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Goldenrod;
             this.label1.Font = new System.Drawing.Font("Microsoft YaHei UI", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 9);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(15, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 35);
+            this.label1.Size = new System.Drawing.Size(169, 43);
             this.label1.TabIndex = 3;
             this.label1.Text = "Serigrafia";
             // 
@@ -89,21 +87,12 @@
             this.menuventas,
             this.menuclientes,
             this.BtnHome});
-            this.Menuu.Location = new System.Drawing.Point(0, 52);
+            this.Menuu.Location = new System.Drawing.Point(0, 64);
             this.Menuu.Name = "Menuu";
-            this.Menuu.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.Menuu.Size = new System.Drawing.Size(1105, 30);
+            this.Menuu.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.Menuu.Size = new System.Drawing.Size(1473, 30);
             this.Menuu.TabIndex = 4;
             this.Menuu.Text = "menuStrip1";
-            // 
-            // PnlForm
-            // 
-            this.PnlForm.BackColor = System.Drawing.Color.Transparent;
-            this.PnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlForm.Location = new System.Drawing.Point(0, 82);
-            this.PnlForm.Name = "PnlForm";
-            this.PnlForm.Size = new System.Drawing.Size(1105, 548);
-            this.PnlForm.TabIndex = 5;
             // 
             // menuusuarios
             // 
@@ -120,31 +109,26 @@
             this.menuproductos.ForeColor = System.Drawing.Color.Black;
             this.menuproductos.Image = global::Serigrafia.Properties.Resources.estar;
             this.menuproductos.Name = "menuproductos";
-            this.menuproductos.Size = new System.Drawing.Size(93, 26);
+            this.menuproductos.Size = new System.Drawing.Size(109, 26);
             this.menuproductos.Text = "Productos";
+            this.menuproductos.Click += new System.EventHandler(this.menuproductos_Click);
             // 
             // menuventas
             // 
             this.menuventas.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuVenta,
             this.MenuVentasRealizadas});
             this.menuventas.ForeColor = System.Drawing.Color.Black;
             this.menuventas.Image = global::Serigrafia.Properties.Resources.carrito_de_compras;
             this.menuventas.Name = "menuventas";
-            this.menuventas.Size = new System.Drawing.Size(68, 26);
+            this.menuventas.Size = new System.Drawing.Size(80, 26);
             this.menuventas.Text = "Venta";
-            // 
-            // MenuVenta
-            // 
-            this.MenuVenta.Name = "MenuVenta";
-            this.MenuVenta.Size = new System.Drawing.Size(180, 22);
-            this.MenuVenta.Text = "Registrar Ventas";
             // 
             // MenuVentasRealizadas
             // 
             this.MenuVentasRealizadas.Name = "MenuVentasRealizadas";
-            this.MenuVentasRealizadas.Size = new System.Drawing.Size(180, 22);
+            this.MenuVentasRealizadas.Size = new System.Drawing.Size(224, 26);
             this.MenuVentasRealizadas.Text = "Ventas Realizadas";
+            this.MenuVentasRealizadas.Click += new System.EventHandler(this.MenuVentasRealizadas_Click);
             // 
             // menuclientes
             // 
@@ -152,7 +136,7 @@
             this.menuclientes.Image = global::Serigrafia.Properties.Resources.grupo_de_usuarios;
             this.menuclientes.Margin = new System.Windows.Forms.Padding(0, 0, 683, 0);
             this.menuclientes.Name = "menuclientes";
-            this.menuclientes.Size = new System.Drawing.Size(81, 26);
+            this.menuclientes.Size = new System.Drawing.Size(95, 26);
             this.menuclientes.Text = "Clientes";
             this.menuclientes.Click += new System.EventHandler(this.menuclientes_Click);
             // 
@@ -162,20 +146,31 @@
             this.BtnHome.Image = global::Serigrafia.Properties.Resources.stay_at_home;
             this.BtnHome.Margin = new System.Windows.Forms.Padding(0, 0, 5000, 0);
             this.BtnHome.Name = "BtnHome";
-            this.BtnHome.Size = new System.Drawing.Size(72, 26);
+            this.BtnHome.Size = new System.Drawing.Size(84, 26);
             this.BtnHome.Text = "Home";
             this.BtnHome.Click += new System.EventHandler(this.BtnHome_Click);
             // 
+            // PnlForm
+            // 
+            this.PnlForm.BackColor = System.Drawing.Color.Transparent;
+            this.PnlForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlForm.Location = new System.Drawing.Point(0, 94);
+            this.PnlForm.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PnlForm.Name = "PnlForm";
+            this.PnlForm.Size = new System.Drawing.Size(1473, 681);
+            this.PnlForm.TabIndex = 5;
+            // 
             // HomeAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Goldenrod;
-            this.ClientSize = new System.Drawing.Size(1105, 630);
+            this.ClientSize = new System.Drawing.Size(1473, 775);
             this.Controls.Add(this.PnlForm);
             this.Controls.Add(this.Menuu);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.MenuTitulo);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "HomeAdmin";
             this.Text = "MenuAdmin";
             this.Load += new System.EventHandler(this.HomeAdmin_Load);
@@ -197,7 +192,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuusuarios;
         private System.Windows.Forms.ToolStripMenuItem menuproductos;
         private System.Windows.Forms.ToolStripMenuItem menuventas;
-        private System.Windows.Forms.ToolStripMenuItem MenuVenta;
         private System.Windows.Forms.ToolStripMenuItem MenuVentasRealizadas;
         private System.Windows.Forms.Panel PnlForm;
         private System.Windows.Forms.ToolStripMenuItem menuclientes;
