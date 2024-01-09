@@ -37,14 +37,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{91DF9675-860A-40C3-A84D-A599705C6A0A}|Serigrafia.csproj|c:\\users\\ricar\\onedrive\\documentos\\github\\serigrafia\\base de datos\\serigrafia.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{91DF9675-860A-40C3-A84D-A599705C6A0A}|Serigrafia.csproj|solutionrelative:base de datos\\serigrafia.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91DF9675-860A-40C3-A84D-A599705C6A0A}|Serigrafia.csproj|c:\\users\\ricar\\onedrive\\documentos\\github\\serigrafia\\base de datos\\serigrafia.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{91DF9675-860A-40C3-A84D-A599705C6A0A}|Serigrafia.csproj|solutionrelative:base de datos\\serigrafia.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{91DF9675-860A-40C3-A84D-A599705C6A0A}|Serigrafia.csproj|c:\\users\\ricar\\onedrive\\documentos\\github\\serigrafia\\base de datos\\serigrafia.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame",
-      "RelativeMoniker": "D:0:0:{91DF9675-860A-40C3-A84D-A599705C6A0A}|Serigrafia.csproj|solutionrelative:base de datos\\serigrafia.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|ResultFrame"
     }
   ],
   "DocumentGroupContainers": [
@@ -78,8 +70,7 @@
               "RelativeToolTip": "Forms\\HomeEmpleado.cs",
               "ViewState": "AQIAADEAAAAAAAAAAAAAwD4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-08T23:38:16.576Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-01-08T23:38:16.576Z"
             },
             {
               "$type": "Document",
@@ -103,8 +94,7 @@
               "RelativeToolTip": "Clases\\Cliente.cs",
               "ViewState": "AQIAAGcAAAAAAAAAAAAAABwAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-08T20:49:27.245Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-01-08T20:49:27.245Z"
             },
             {
               "$type": "Document",
@@ -114,7 +104,7 @@
               "RelativeDocumentMoniker": "Forms\\Ventas.cs",
               "ToolTip": "C:\\Users\\ricar\\OneDrive\\Documentos\\Github\\Serigrafia\\Forms\\Ventas.cs",
               "RelativeToolTip": "Forms\\Ventas.cs",
-              "ViewState": "AQIAAFoAAAAAAAAAAAAuwHAAAAAUAAAA",
+              "ViewState": "AQIAAFMAAAAAAAAAAAAgwHIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-01-08T21:34:32.25Z",
               "EditorCaption": ""
@@ -141,8 +131,7 @@
               "RelativeToolTip": "Forms\\Clientes.cs",
               "ViewState": "AQIAAHoAAAAAAAAAAAAEwJIAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-01-08T20:49:09.423Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-01-08T20:49:09.423Z"
             },
             {
               "$type": "Document",
@@ -159,14 +148,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Serigrafia.sql ",
+              "Title": "Serigrafia.sql",
               "DocumentMoniker": "C:\\Users\\ricar\\OneDrive\\Documentos\\Github\\Serigrafia\\Base de datos\\Serigrafia.sql",
               "RelativeDocumentMoniker": "Base de datos\\Serigrafia.sql",
               "ToolTip": "C:\\Users\\ricar\\OneDrive\\Documentos\\Github\\Serigrafia\\Base de datos\\Serigrafia.sql",
               "RelativeToolTip": "Base de datos\\Serigrafia.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-01-08T18:12:17.733Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-01-08T18:12:17.733Z"
             }
           ]
         }

@@ -98,7 +98,7 @@ namespace Serigrafia.Forms
             double Total = 0;
             //int RenglonSeleccionado = Dgv_Ventas.CurrentRow.Index;
             //string h = Dgv_Ventas.Rows[RenglonSeleccionado].Cells[7].Value.ToString();
-            
+
             DialogResult Resultado = MessageBox.Show("¿Desea terminar la venta?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (Resultado == DialogResult.Yes)
             {
@@ -110,7 +110,8 @@ namespace Serigrafia.Forms
                 Insertar();
                 Home.MenuVenta_Click(this, EventArgs.Empty);
                 MessageBox.Show("Se realizo la venta adecuadamente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }       
+                Dgv_ProductosSeleccionados.Rows.Clear();
+            }
         }
         public bool Insertar()
         {
