@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -67,8 +68,8 @@ namespace Serigrafia.Forms
                     producto.Descripcion = textBox4.Text;
                     producto.Id_Catalogo = Convert.ToInt32(numericUpDown1.Value);
                     producto.Stock = Convert.ToInt32(numericUpDown2.Value);
-                    producto.Precio_Compra = Convert.ToInt32(numericUpDown4.Value);
-                    producto.Precio_Venta = Convert.ToInt32(numericUpDown3.Value);
+                    producto.Precio_Compra = Convert.ToInt32(txtpcomp.Text);
+                    producto.Precio_Venta = Convert.ToInt32(txtpven.Text);
 
                     if (ValidaCampos(1))
                     {
@@ -91,8 +92,8 @@ namespace Serigrafia.Forms
                     producto.Descripcion = textBox4.Text;
                     producto.Id_Catalogo = Convert.ToInt32(numericUpDown1.Value);
                     producto.Stock = Convert.ToInt32(numericUpDown2.Value);
-                    producto.Precio_Compra = Convert.ToInt32(numericUpDown4.Value);
-                    producto.Precio_Venta = Convert.ToInt32(numericUpDown3.Value);
+                    producto.Precio_Compra = Convert.ToInt32(txtpcomp.Text);
+                    producto.Precio_Venta = Convert.ToInt32(txtpven.Text);
                     producto.Id_Producto = Convert.ToInt32(id);
 
                     if (ValidaCampos(2))
@@ -229,7 +230,8 @@ namespace Serigrafia.Forms
 
         private void button5_Click(object sender, EventArgs e)
         {
-
+            Mostrar(1, false, Color.Gray);
+            LimpiaCampos();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -257,7 +259,44 @@ namespace Serigrafia.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int renglon;
+            string id, idprod;
+
+            renglon = DgvAlmacen.CurrentRow.Index;
+            id = DgvAlmacen.Rows[renglon].Cells[0].Value.ToString();
+
             Mostrar(2, true, Color.White);
+
+            DataTable Productos = new DataTable();
+
+            using (SqlConnection conexion = Conexion.Conectar())
+            {
+                SqlCommand cmdSelect;
+                SqlDataAdapter adapterLibros = new SqlDataAdapter();
+
+                string sentencia = "Select * from Producto where Id_Producto = @id";
+                cmdSelect = new SqlCommand(sentencia, conexion);
+                cmdSelect.Parameters.AddWithValue("@id", Convert.ToInt32(id));
+
+                try
+                {
+                    adapterLibros.SelectCommand = cmdSelect;
+                    conexion.Open();
+                    adapterLibros.Fill(Productos);
+                    textBox1.Text = Productos.Rows[0]["Id_Producto"].ToString();
+                    textBox2.Text = Productos.Rows[0]["Codigo"].ToString();
+                    textBox3.Text = Productos.Rows[0]["Nombre"].ToString();
+                    textBox4.Text = Productos.Rows[0]["Descripcion"].ToString();
+                    numericUpDown1.Value = Convert.ToDecimal(Productos.Rows[0]["Id_Catalogo"]);
+                    numericUpDown2.Value = Convert.ToDecimal(Productos.Rows[0]["Stock"]);
+                    txtpcomp.Text = Productos.Rows[0]["Precio_Compra"].ToString();
+                    txtpven.Text = Productos.Rows[0]["Precio_Compra"].ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
 
             op = 2;
         }

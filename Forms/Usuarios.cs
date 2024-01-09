@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -101,7 +102,41 @@ namespace Serigrafia.Forms
 
         private void BtnModificar_Click(object sender, EventArgs e)
         {
+            int renglon;
+            string id, idprod;
+
+            renglon = DgvUsuarios.CurrentRow.Index;
+            id = DgvUsuarios.Rows[renglon].Cells[0].Value.ToString();
+
             Mostrar(2, true, Color.White);
+
+            DataTable Productos = new DataTable();
+
+            using (SqlConnection conexion = Conexion.Conectar())
+            {
+                SqlCommand cmdSelect;
+                SqlDataAdapter adapterLibros = new SqlDataAdapter();
+
+                string sentencia = "Select * from Usuario where Id_Usuario = @id";
+                cmdSelect = new SqlCommand(sentencia, conexion);
+                cmdSelect.Parameters.AddWithValue("@id", Convert.ToInt32(id));
+
+                try
+                {
+                    adapterLibros.SelectCommand = cmdSelect;
+                    conexion.Open();
+                    adapterLibros.Fill(Productos);
+                    TxtUsuario.Text = Productos.Rows[0]["Usuario"].ToString();
+                    TxtContraseña.Text = Productos.Rows[0]["Contrasena"].ToString();
+                    TxtNombre.Text = Productos.Rows[0]["Nombre"].ToString();
+                    TxtCorreo.Text = Productos.Rows[0]["Correo"].ToString();
+                    CmbRol.SelectedIndex = (Int32)Productos.Rows[0]["Id_Rol"] - 1;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
 
             op = 2;
         }
@@ -213,5 +248,10 @@ namespace Serigrafia.Forms
             errorProvider1.SetError(TxtContraseña, "");
         }
 
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            Mostrar(1, false, Color.Gray);
+            LimpiaCampos();
+        }
     }
 }
