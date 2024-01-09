@@ -80,6 +80,7 @@ go
 create table Venta(
 Id_Venta int primary key identity(1,1),
 Id_Usuario int references Usuario(Id_Usuario),/* quien creo la venta */
+NomUser NVARCHAR (max) Not Null,
 NombreCliente varchar (50),
 MontoTotal decimal(10,2)
 );
@@ -155,3 +156,4 @@ VALUES
   ('COD014', 'Producto 14', 'Descripción del producto 14', 2, 12, 22.99, 41.50),
   ('COD015', 'Producto 15', 'Descripción del producto 15', 3, 50, 19.50, 35.99);
 Go
+

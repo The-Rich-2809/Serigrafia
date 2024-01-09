@@ -95,25 +95,43 @@ namespace Serigrafia.Forms
 
         private void Btn_Terminar_Click(object sender, EventArgs e)
         {
+            Producto producto = new Producto();
             double Total = 0;
+            string Id;
+            int cantidaIncial = 0;
+            int cantidadParcial = 0;
+            int cantidadFinal = 0;
+            string NomUser = "";
             //int RenglonSeleccionado = Dgv_Ventas.CurrentRow.Index;
             //string h = Dgv_Ventas.Rows[RenglonSeleccionado].Cells[7].Value.ToString();
 
             DialogResult Resultado = MessageBox.Show("¿Desea terminar la venta?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (Resultado == DialogResult.Yes)
             {
-                for (int i = 0; i < Dgv_ProductosSeleccionados.Rows.Count; i++)
+                for (int i = 0; i < Dgv_ProductosSeleccionados.Rows.Count - 1; i++)
                 {
-                    Total += Convert.ToDouble(Dgv_ProductosSeleccionados.Rows[0].Cells[7].Value.ToString());
+                    Total += Convert.ToDouble(Dgv_ProductosSeleccionados.Rows[i].Cells[7].Value.ToString()) * 
+                        Convert.ToDouble(Dgv_ProductosSeleccionados.Rows[i].Cells[5].Value.ToString());
+                    Id = Dgv_ProductosSeleccionados.Rows[i].Cells[0].Value.ToString();
+                    cantidadParcial = Convert.ToInt32(Dgv_ProductosSeleccionados.Rows[i].Cells[5].Value.ToString());
+                    
+                    producto.Id_Producto = Convert.ToInt32(Id);
+                    cantidaIncial = producto.SacarExistencia();
+                    cantidadFinal = cantidaIncial - cantidadParcial;
+                    producto.ModificarStock(cantidadFinal);
                 }
+
                 label4.Text = Convert.ToString(Total);
-                Insertar();
+                NomUser = producto.SacarNomUser(label3.Text);
+                Insertar(NomUser);
                 Home.MenuVenta_Click(this, EventArgs.Empty);
                 MessageBox.Show("Se realizo la venta adecuadamente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Dgv_ProductosSeleccionados.Rows.Clear();
+                MostrarTabla();
             }
         }
-        public bool Insertar()
+
+        public bool Insertar(string NomUser)
         {
             bool Exito = false;
             using (SqlConnection Con = Conexion.Conectar())
@@ -123,10 +141,11 @@ namespace Serigrafia.Forms
                 int resultado;
                 string Sentencia;
 
-                Sentencia = @"insert into Venta values (@Id_Usuario, @NombreCliente, @MontoTotal)";
+                Sentencia = @"insert into Venta values (@Id_Usuario, @NomUser,@NombreCliente, @MontoTotal)";
                 CMDSql = new SqlCommand(Sentencia, Con);
 
                 CMDSql.Parameters.AddWithValue("@Id_Usuario", label3.Text);
+                CMDSql.Parameters.AddWithValue("@NomUser", NomUser);
                 CMDSql.Parameters.AddWithValue("@NombreCliente", Cb_Clientes.Text);
                 CMDSql.Parameters.AddWithValue("@MontoTotal", Convert.ToDouble(label4.Text));
 
@@ -166,7 +185,7 @@ namespace Serigrafia.Forms
 
         private void Btn_Eliminar_Click(object sender, EventArgs e)
         {
-            int RenglonSeleccionado = Dgv_Ventas.CurrentRow.Index;
+            int RenglonSeleccionado = Dgv_ProductosSeleccionados.CurrentRow.Index;
             DialogResult Resultado = MessageBox.Show("¿Desea eliminar el producto?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (Resultado == DialogResult.Yes)
             {

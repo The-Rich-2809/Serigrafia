@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Serigrafia.Forms;
 
 namespace Serigrafia.Clases
 {
@@ -170,5 +171,107 @@ namespace Serigrafia.Clases
 
             return Almacen;
         }
+        public int SacarExistencia()
+        {
+            int stock = 0;
+            DataTable Almacen = new DataTable();
+            using (SqlConnection Con = Conexion.Conectar())
+            {
+                SqlCommand CMDSql;
+                
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+                int resultado;
+                string Sentencia;
+
+                Sentencia = @"select Stock from Producto where Id_Producto = @Id_Producto";
+                CMDSql = new SqlCommand(Sentencia, Con);
+
+                CMDSql.Parameters.AddWithValue("@Id_Producto", Id_Producto);
+
+                try
+                {
+                    Con.Open();
+                    sqlDataAdapter.SelectCommand = CMDSql;
+                    sqlDataAdapter.Fill(Almacen);
+                    stock = Convert.ToInt32(Almacen.Rows[0]["Stock"]);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                
+            }
+            return stock;
+        }
+        public bool ModificarStock(int i)
+        {
+            bool Exito = false;
+            using (SqlConnection Con = Conexion.Conectar())
+            {
+                SqlCommand CMDSql;
+
+                int resultado;
+                string Sentencia;
+
+                Sentencia = @"update Producto set Stock = @Stock where Id_Producto = @Id_Producto";
+                CMDSql = new SqlCommand(Sentencia, Con);
+
+                CMDSql.Parameters.AddWithValue("@Id_Producto", Id_Producto);
+                CMDSql.Parameters.AddWithValue("@Stock", i);
+
+                try
+                {
+                    Con.Open();
+
+                    resultado = CMDSql.ExecuteNonQuery();
+                    if (resultado > 0)
+                    {
+                        Exito = true;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Mensaje = ex.Message;
+                }
+            }
+            return Exito;
+        }
+        public string SacarNomUser(string id)
+        {
+            string stock = "";
+            DataTable Almacen = new DataTable();
+            using (SqlConnection Con = Conexion.Conectar())
+            {
+                SqlCommand CMDSql;
+
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+                int resultado;
+                string Sentencia;
+
+                Sentencia = @"select Nombre from Usuario where Id_Usuario = @Id_Usuario";
+                CMDSql = new SqlCommand(Sentencia, Con);
+
+                CMDSql.Parameters.AddWithValue("@Id_Usuario", id);
+
+                try
+                {
+                    Con.Open();
+                    sqlDataAdapter.SelectCommand = CMDSql;
+                    sqlDataAdapter.Fill(Almacen);
+                    stock = Almacen.Rows[0]["Nombre"].ToString();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
+            return stock;
+        }
+
     }
 }
