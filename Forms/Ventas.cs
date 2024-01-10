@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iText.Layout;
 
 namespace Serigrafia.Forms
 {
@@ -115,11 +116,11 @@ namespace Serigrafia.Forms
             {
                 for (int i = 0; i < Dgv_ProductosSeleccionados.Rows.Count - 1; i++)
                 {
-                    Total += Convert.ToDouble(Dgv_ProductosSeleccionados.Rows[i].Cells[7].Value.ToString()) * 
+                    Total += Convert.ToDouble(Dgv_ProductosSeleccionados.Rows[i].Cells[7].Value.ToString()) *
                         Convert.ToDouble(Dgv_ProductosSeleccionados.Rows[i].Cells[5].Value.ToString());
                     Id = Dgv_ProductosSeleccionados.Rows[i].Cells[0].Value.ToString();
                     cantidadParcial = Convert.ToInt32(Dgv_ProductosSeleccionados.Rows[i].Cells[5].Value.ToString());
-                    
+
                     producto.Id_Producto = Convert.ToInt32(Id);
                     cantidaIncial = producto.SacarExistencia();
                     cantidadFinal = cantidaIncial - cantidadParcial;
@@ -129,6 +130,7 @@ namespace Serigrafia.Forms
                 label4.Text = Convert.ToString(Total);
                 NomUser = producto.SacarNomUser(label3.Text);
                 Insertar(NomUser);
+                IPDF(NomUser);
                 Home.MenuVenta_Click(this, EventArgs.Empty);
                 MessageBox.Show("Se realizo la venta adecuadamente", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Dgv_ProductosSeleccionados.Rows.Clear();
@@ -173,6 +175,36 @@ namespace Serigrafia.Forms
             }
             return Exito;
         }
+        public DataTable Mostar_Id()
+        {
+            DataTable Almacen = new DataTable();
+
+            using (SqlConnection Conectar = Conexion.Conectar())
+            {
+                string Cadena;
+                SqlCommand CmdSQL;
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
+
+                Cadena = @"Select * from Producto";
+
+                CmdSQL = new SqlCommand(Cadena, Conectar);
+
+                try
+                {
+                    Conectar.Open();
+
+                    sqlDataAdapter.SelectCommand = CmdSQL;
+
+                    sqlDataAdapter.Fill(Almacen);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return Almacen;
+        }
 
         private void Btn_Agregar_Click(object sender, EventArgs e)
         {
@@ -204,14 +236,15 @@ namespace Serigrafia.Forms
 
         }
 
-        public void IPDF()
+        public void IPDF(string NomUser)
         {
+
             int RenglonSeleccionado = Dgv_Ventas.CurrentRow.Index;
             SaveFileDialog GuardaArchivoPdf = new SaveFileDialog();
             int cant = Convert.ToInt32(numericUpDown1.Value);
-            string rp = @"Factura Nº " + x++;
+            string rp = @"Factura Nº " + EncontrarIDMax();
             GuardaArchivoPdf.Filter = "Archivos PDF|*.pdf";
-            GuardaArchivoPdf.FileName = @"Factura Nº " + x++;
+            GuardaArchivoPdf.FileName = @"Factura Nº " + EncontrarIDMax();
             if (GuardaArchivoPdf.ShowDialog() == DialogResult.OK)
             {
                 using (FileStream stream = new FileStream(GuardaArchivoPdf.FileName, FileMode.Create))
@@ -223,18 +256,18 @@ namespace Serigrafia.Forms
                     Document MiDocumento = new Document(pdfDocument);
                     PdfCanvas canvas = new PdfCanvas(pdfDocument.AddNewPage());
 
-                    LblNombre.Text = Dgv_Ventas.Rows[RenglonSeleccionado].Cells[1].Value.ToString();
+                    string nombrep = Dgv_Ventas.Rows[RenglonSeleccionado].Cells[1].Value.ToString();
 
                     MiDocumento.Add(new Paragraph("************************************************"));
-                    MiDocumento.Add(new Paragraph("Factura Nº: " + x++));
+                    MiDocumento.Add(new Paragraph("Factura Nº: " + EncontrarIDMax()));
                     MiDocumento.Add(new Paragraph("Fecha: " + DateTime.Now));
                     MiDocumento.Add(new Paragraph("************************************************"));
-                    MiDocumento.Add(new Paragraph(LblNombre.Text));
+                    MiDocumento.Add(new Paragraph(NomUser));
 
 
 
                     MiDocumento.Add(new Paragraph("Cantidad      Producto              "));
-                    MiDocumento.Add(new Paragraph(cant + "            " + LblNombre.Text));
+                    MiDocumento.Add(new Paragraph(cant + "            " + nombrep));
 
                     MiDocumento.Add(new Paragraph("************************************************"));
                     MiDocumento.Add(new Paragraph("TOTAL:                             $" + label4.Text));
@@ -244,6 +277,41 @@ namespace Serigrafia.Forms
                 }
 
             }
+        }
+
+        private int EncontrarIDMax()
+        {
+            int Idp = 0;
+
+            DataTable Productos = new DataTable();
+            using (SqlConnection conexion = Conexion.Conectar())
+            {
+                SqlCommand cmdSelect;
+                SqlDataAdapter adapterLibros = new SqlDataAdapter();
+
+                string sentencia = "select MAX(Id_Venta) as id from Venta";
+                cmdSelect = new SqlCommand(sentencia, conexion);
+
+                try
+                {
+                    adapterLibros.SelectCommand = cmdSelect;
+                    conexion.Open();
+                    adapterLibros.Fill(Productos);
+
+                    string temporal = Productos.Rows[0]["id"].ToString();
+
+                    if (temporal == "")
+                        Idp = 1;
+                    else
+                        Idp = (Int32)Productos.Rows[0]["id"];
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return Idp;
         }
     }
 }

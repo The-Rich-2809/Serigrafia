@@ -172,3 +172,8 @@ C:\Github\Kapicentro\Serigrafia\bin\Debug\System.ValueTuple.xml
 C:\Github\Kapicentro\Serigrafia\obj\Debug\Serigrafia.Forms.Ventas.resources
 C:\Github\Kapicentro\Serigrafia\obj\Debug\Serigrafia.Forms.VentasRealizadas.resources
 C:\Github\Kapicentro\Serigrafia\obj\Debug\Serigrafia.csproj.CopyComplete
+C:\Github\Kapicentro\Serigrafia\bin\Debug\BouncyCastle.Crypto.dll
+C:\Github\Kapicentro\Serigrafia\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Github\Kapicentro\Serigrafia\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Github\Kapicentro\Serigrafia\bin\Debug\itext.bouncy-castle-adapter.dll
+C:\Github\Kapicentro\Serigrafia\bin\Debug\itext.bouncy-castle-adapter.xml

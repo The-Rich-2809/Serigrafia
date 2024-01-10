@@ -156,4 +156,3 @@ VALUES
   ('COD014', 'Producto 14', 'Descripción del producto 14', 2, 12, 22.99, 41.50),
   ('COD015', 'Producto 15', 'Descripción del producto 15', 3, 50, 19.50, 35.99);
 Go
-
