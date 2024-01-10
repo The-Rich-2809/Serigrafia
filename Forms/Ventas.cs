@@ -1,4 +1,8 @@
-﻿using Serigrafia.Clases;
+﻿using iText.Kernel.Geom;
+using iText.Kernel.Pdf.Canvas;
+using iText.Kernel.Pdf;
+using iText.Layout.Element;
+using Serigrafia.Clases;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -197,6 +202,48 @@ namespace Serigrafia.Forms
             }
                
 
+        }
+
+        public void IPDF()
+        {
+            int RenglonSeleccionado = Dgv_Ventas.CurrentRow.Index;
+            SaveFileDialog GuardaArchivoPdf = new SaveFileDialog();
+            int cant = Convert.ToInt32(numericUpDown1.Value);
+            string rp = @"Factura Nº " + x++;
+            GuardaArchivoPdf.Filter = "Archivos PDF|*.pdf";
+            GuardaArchivoPdf.FileName = @"Factura Nº " + x++;
+            if (GuardaArchivoPdf.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream stream = new FileStream(GuardaArchivoPdf.FileName, FileMode.Create))
+                {
+                    PdfWriter pdfWriter = new PdfWriter(stream);
+                    PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+                    PageSize pageSize = PageSize.A7.Rotate();
+
+                    Document MiDocumento = new Document(pdfDocument);
+                    PdfCanvas canvas = new PdfCanvas(pdfDocument.AddNewPage());
+
+                    LblNombre.Text = Dgv_Ventas.Rows[RenglonSeleccionado].Cells[1].Value.ToString();
+
+                    MiDocumento.Add(new Paragraph("************************************************"));
+                    MiDocumento.Add(new Paragraph("Factura Nº: " + x++));
+                    MiDocumento.Add(new Paragraph("Fecha: " + DateTime.Now));
+                    MiDocumento.Add(new Paragraph("************************************************"));
+                    MiDocumento.Add(new Paragraph(LblNombre.Text));
+
+
+
+                    MiDocumento.Add(new Paragraph("Cantidad      Producto              "));
+                    MiDocumento.Add(new Paragraph(cant + "            " + LblNombre.Text));
+
+                    MiDocumento.Add(new Paragraph("************************************************"));
+                    MiDocumento.Add(new Paragraph("TOTAL:                             $" + label4.Text));
+                    MiDocumento.Add(new Paragraph("************************************************"));
+                    MiDocumento.Add(new Paragraph("Gracias por su compra"));
+                    MiDocumento.Close();
+                }
+
+            }
         }
     }
 }
