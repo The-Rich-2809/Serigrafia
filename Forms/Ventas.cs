@@ -267,7 +267,10 @@ namespace Serigrafia.Forms
 
 
                     MiDocumento.Add(new Paragraph("Cantidad      Producto              "));
-                    MiDocumento.Add(new Paragraph(cant + "            " + nombrep));
+                    for (int i = 0; i < Dgv_ProductosSeleccionados.RowCount - 1; i++)
+                    {
+                        MiDocumento.Add(new Paragraph(Dgv_ProductosSeleccionados.Rows[i].Cells[5].Value.ToString() + "            " + Dgv_ProductosSeleccionados.Rows[i].Cells[2].Value.ToString()));
+                    }
 
                     MiDocumento.Add(new Paragraph("************************************************"));
                     MiDocumento.Add(new Paragraph("TOTAL:                             $" + label4.Text));
